@@ -1,0 +1,12 @@
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Carniceria\bin\Release\net6.0\Carniceria.deps.json
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Carniceria\bin\Release\net6.0\Carniceria.dll
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Carniceria\bin\Release\net6.0\Carniceria.pdb
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Carniceria\obj\Release\net6.0\Carniceria.csproj.AssemblyReference.cache
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Carniceria\obj\Release\net6.0\Carniceria.GeneratedMSBuildEditorConfig.editorconfig
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Carniceria\obj\Release\net6.0\Carniceria.AssemblyInfoInputs.cache
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Carniceria\obj\Release\net6.0\Carniceria.AssemblyInfo.cs
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Carniceria\obj\Release\net6.0\Carniceria.csproj.CoreCompileInputs.cache
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Carniceria\obj\Release\net6.0\Carniceria.dll
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Carniceria\obj\Release\net6.0\refint\Carniceria.dll
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Carniceria\obj\Release\net6.0\Carniceria.pdb
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Carniceria\obj\Release\net6.0\ref\Carniceria.dll
