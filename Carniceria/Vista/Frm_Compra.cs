@@ -464,7 +464,7 @@ namespace Vista
         {
             try
             {
-                ArchivosCarniceria.SerializarProductosXml(Negocio.ListaCarnes);
+                ArchivosCarniceria.SerializarProductosXml(listAux);
             }
             catch (ArchivosExcepciones ex)
             {
@@ -485,5 +485,30 @@ namespace Vista
         }
 
 
+
+        private void btn_deserialJson_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MessageBox.Show(ArchivosCarniceria.DeserializarProductosJson(), "Productos serializados en JSON", MessageBoxButtons.OK);
+            }
+            catch (ArchivosExcepciones ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        private void btn_serialJson_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ArchivosCarniceria.SerializarProductosJson(Negocio.ListaCarnes);
+            }
+            catch (ArchivosExcepciones ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

@@ -55,6 +55,11 @@
             this.btn_serializar = new System.Windows.Forms.Button();
             this.btn_deserializar = new System.Windows.Forms.Button();
             this.lb_reloj = new System.Windows.Forms.Label();
+            this.btn_serialJson = new System.Windows.Forms.Button();
+            this.btn_deserialJson = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_listaCarnes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -311,7 +316,7 @@
             // btn_serializar
             // 
             this.btn_serializar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.btn_serializar.Location = new System.Drawing.Point(759, 90);
+            this.btn_serializar.Location = new System.Drawing.Point(796, 128);
             this.btn_serializar.Name = "btn_serializar";
             this.btn_serializar.Size = new System.Drawing.Size(97, 37);
             this.btn_serializar.TabIndex = 33;
@@ -322,7 +327,7 @@
             // btn_deserializar
             // 
             this.btn_deserializar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.btn_deserializar.Location = new System.Drawing.Point(759, 138);
+            this.btn_deserializar.Location = new System.Drawing.Point(949, 128);
             this.btn_deserializar.Name = "btn_deserializar";
             this.btn_deserializar.Size = new System.Drawing.Size(97, 37);
             this.btn_deserializar.TabIndex = 34;
@@ -341,12 +346,62 @@
             this.lb_reloj.Size = new System.Drawing.Size(0, 37);
             this.lb_reloj.TabIndex = 35;
             // 
+            // btn_serialJson
+            // 
+            this.btn_serialJson.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btn_serialJson.Location = new System.Drawing.Point(796, 225);
+            this.btn_serialJson.Name = "btn_serialJson";
+            this.btn_serialJson.Size = new System.Drawing.Size(97, 37);
+            this.btn_serialJson.TabIndex = 36;
+            this.btn_serialJson.Text = "SERIALIZAR";
+            this.btn_serialJson.UseVisualStyleBackColor = false;
+            this.btn_serialJson.Click += new System.EventHandler(this.btn_serialJson_Click);
+            // 
+            // btn_deserialJson
+            // 
+            this.btn_deserialJson.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btn_deserialJson.Location = new System.Drawing.Point(949, 225);
+            this.btn_deserialJson.Name = "btn_deserialJson";
+            this.btn_deserialJson.Size = new System.Drawing.Size(97, 37);
+            this.btn_deserialJson.TabIndex = 37;
+            this.btn_deserialJson.Text = "DESERIALIZAR";
+            this.btn_deserialJson.UseVisualStyleBackColor = false;
+            this.btn_deserialJson.Click += new System.EventHandler(this.btn_deserialJson_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Location = new System.Drawing.Point(840, 83);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(183, 15);
+            this.label3.TabIndex = 38;
+            this.label3.Text = "SERIALIZAR PRODUCTOS EN XML";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point);
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(840, 202);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(187, 15);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "SERIALIZAR PRODUCTOS EN JSON";
+            // 
             // Frm_Compra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 490);
+            this.ClientSize = new System.Drawing.Size(1095, 490);
             this.ControlBox = false;
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btn_deserialJson);
+            this.Controls.Add(this.btn_serialJson);
             this.Controls.Add(this.lb_reloj);
             this.Controls.Add(this.btn_deserializar);
             this.Controls.Add(this.btn_serializar);
@@ -410,5 +465,10 @@
         private Button btn_serializar;
         private Button btn_deserializar;
         private Label lb_reloj;
+        private Button btn_serialJson;
+        private Button btn_deserialJson;
+        private Label label3;
+        private Label label6;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

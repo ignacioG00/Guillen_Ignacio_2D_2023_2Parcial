@@ -1,0 +1,27 @@
+[
+  {
+    "CorteDeCarne": "Bondiola",
+    "PrecioPorKilo": 1000,
+    "Stock": 14
+  },
+  {
+    "CorteDeCarne": "Chorizo",
+    "PrecioPorKilo": 2500,
+    "Stock": 14
+  },
+  {
+    "CorteDeCarne": "Costillar",
+    "PrecioPorKilo": 1800,
+    "Stock": 11
+  },
+  {
+    "CorteDeCarne": "Tira de Asado",
+    "PrecioPorKilo": 1500,
+    "Stock": 14
+  },
+  {
+    "CorteDeCarne": "Vacio",
+    "PrecioPorKilo": 2000,
+    "Stock": 17
+  }
+]

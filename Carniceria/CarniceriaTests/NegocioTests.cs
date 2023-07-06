@@ -11,16 +11,37 @@ namespace Carniceria.Tests
     [TestClass()]
     public class NegocioTests
     {
-        [TestMethod()]
-        public void LoguearUsuarioTest()
+        [TestMethod]
+        public void TestBuscarClientes()
         {
-            Assert.Fail();
+            List<Cliente> clientes;
+            ClienteBD bdClientes = new ClienteBD();
+
+            clientes = bdClientes.LeerArchivos();
+
+            Assert.AreNotEqual(clientes.Count, 0);
         }
 
-        [TestMethod()]
-        public void SelectorUsuarioTest()
+        [TestMethod]
+        public void TestLogin()
         {
-            Assert.Fail();
+            Usuario useraux; 
+            ClienteBD bdClientes = new ClienteBD();
+            VendedorBD bdVendedores = new VendedorBD();
+
+            Negocio.Clientes = bdClientes.LeerArchivos();
+            Negocio.Vendedores = bdVendedores.LeerArchivos();
+            useraux =Negocio.LoguearUsuario("123!#$!$%", "....,.-.");
+            Assert.IsNull(useraux);
+        }
+
+        [TestMethod]
+        public void TestReponerProducto() 
+        {
+            List<Producto> listaux = Negocio.Heladera;
+            Producto producto = listaux[0];
+            Negocio.ReponerProducto(listaux, listaux[0].CorteDeCarne,300);
+            Assert.IsTrue(listaux[0].Stock>300);
         }
     }
 }

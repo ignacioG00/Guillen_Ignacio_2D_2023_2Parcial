@@ -10,8 +10,8 @@ namespace Vista
         Frm_Heladera heladera = new Frm_Heladera();
         Frm_Compra compras = new Frm_Compra();
         Usuario userAux;
-        private ClienteBD clientesCRUD;
-        private VendedorBD vendedoresCRUD;
+        private ClienteBD bdClientes;
+        private VendedorBD bdVendedores;
         private SoundPlayer sonidoLogin= new SoundPlayer();
         public Frm_Login()
         {
@@ -20,8 +20,8 @@ namespace Vista
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            Negocio.Clientes = clientesCRUD.LeerArchivos();
-            Negocio.Vendedores = vendedoresCRUD.LeerArchivos();
+            Negocio.Clientes = bdClientes.LeerArchivos();
+            Negocio.Vendedores = bdVendedores.LeerArchivos();
             ValidarIngreso(tb_usuario.Text, tb_contra.Text);
             if (userAux is not null)
             {
@@ -99,8 +99,8 @@ namespace Vista
 
         private void Frm_Login_Load(object sender, EventArgs e)
         {
-            clientesCRUD = new ClienteBD();
-            vendedoresCRUD = new VendedorBD();
+            bdClientes = new ClienteBD();
+            bdVendedores = new VendedorBD();
         }
     }
 }
