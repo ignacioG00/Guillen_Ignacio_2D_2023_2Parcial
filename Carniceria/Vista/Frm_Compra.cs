@@ -26,8 +26,8 @@ namespace Vista
         NegocioBD bdNegocio = new NegocioBD();
         ClienteBD bdClientes = new ClienteBD();
         CancellationTokenSource cancellationTokenHora= new CancellationTokenSource();
-        
         private SoundPlayer sonidoCompra = new SoundPlayer();
+
 
         static List<Producto> listAux = new List<Producto>();
         private void CargarLista() 
@@ -56,7 +56,8 @@ namespace Vista
             MessageBox.Show($"Se ha rellenado el stock del producto {info.CorteCarne}.");
         }
 
-            private List<Producto> RetornarCopiaListAux(List<Producto> productos) 
+
+        private List<Producto> RetornarCopiaListAux(List<Producto> productos) 
         {
             List<Producto> listCopia = new List<Producto>();
             foreach (var item in productos)
@@ -173,7 +174,12 @@ namespace Vista
                     RealizarPago(clienteAux, totalConRecargo);
                     try
                     {
-                        producto.RellenarStock();
+                        DialogResult res = MessageBox.Show("DESEA RELLENAR STOCK?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                        if (res == DialogResult.Yes)
+                        {
+                            producto.RellenarStock();
+                        }
                         ActualizarListas();
                     }
                     catch (Exception ex)
@@ -187,8 +193,12 @@ namespace Vista
                     RealizarPago(clienteAux, total);
                     try
                     {
-                        producto.RellenarStock();
+                        DialogResult res = MessageBox.Show("DESEA RELLENAR STOCK?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
+                        if (res == DialogResult.Yes)
+                        {
+                            producto.RellenarStock();
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -382,12 +392,15 @@ namespace Vista
             sonidoCompra.Play();
             try
             {
-                
                 foreach (var carne in Negocio.Heladera)
                 {
                     bdNegocio.ModificarCRUD(carne);
-                    carne.RellenarStock();
-                    
+                    if (carne.Stock<3)
+                    {
+                        
+                            carne.RellenarStock();
+                        
+                    }
                 }
                 dgv_listaCarnes.Rows.Clear();
                 for (int i = 0; i < Negocio.Heladera.Count; i++)
