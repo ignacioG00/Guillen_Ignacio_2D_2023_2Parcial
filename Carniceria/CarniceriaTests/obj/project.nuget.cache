@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QM7OnjENJYpXF2bk6ABrl2qLG9xk7L6SzLqsDag6/tcRGoAZ4QrP2TU/wOOrfk6e3VqX4GYvl95Ztnk4pzIYKQ==",
+  "dgSpecHash": "W9Qkw7YtZPU1RNkqCmdmGN2hL5eUbTgJgZibr7Jgc2oB+TEoLyzSSqfywstsjeheWXaS0v/wnbkB49oGMXAASQ==",
   "success": true,
   "projectFilePath": "C:\\Escritorio\\UTN\\Guillen_Ignacio_2D_2023\\Carniceria\\CarniceriaTests\\CarniceriaTests.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "C:\\Users\\ignac\\.nuget\\packages\\microsoft.testplatform.testhost\\17.1.0\\microsoft.testplatform.testhost.17.1.0.nupkg.sha512",
     "C:\\Users\\ignac\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\ignac\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\ignac\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
     "C:\\Users\\ignac\\.nuget\\packages\\mstest.testadapter\\2.2.8\\mstest.testadapter.2.2.8.nupkg.sha512",
     "C:\\Users\\ignac\\.nuget\\packages\\mstest.testframework\\2.2.8\\mstest.testframework.2.2.8.nupkg.sha512",
     "C:\\Users\\ignac\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
@@ -51,6 +52,7 @@
     "C:\\Users\\ignac\\.nuget\\packages\\system.diagnostics.tools\\4.3.0\\system.diagnostics.tools.4.3.0.nupkg.sha512",
     "C:\\Users\\ignac\\.nuget\\packages\\system.diagnostics.tracesource\\4.3.0\\system.diagnostics.tracesource.4.3.0.nupkg.sha512",
     "C:\\Users\\ignac\\.nuget\\packages\\system.diagnostics.tracing\\4.3.0\\system.diagnostics.tracing.4.3.0.nupkg.sha512",
+    "C:\\Users\\ignac\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512",
     "C:\\Users\\ignac\\.nuget\\packages\\system.dynamic.runtime\\4.0.11\\system.dynamic.runtime.4.0.11.nupkg.sha512",
     "C:\\Users\\ignac\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",
     "C:\\Users\\ignac\\.nuget\\packages\\system.globalization.calendars\\4.3.0\\system.globalization.calendars.4.3.0.nupkg.sha512",
@@ -98,6 +100,7 @@
     "C:\\Users\\ignac\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\ignac\\.nuget\\packages\\system.threading.tasks.extensions\\4.3.0\\system.threading.tasks.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\ignac\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
+    "C:\\Users\\ignac\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512",
     "C:\\Users\\ignac\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\ignac\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],

@@ -8,9 +8,9 @@ namespace Carniceria
 {
     public interface ICarniceriaCRUD<T>
     {
-        public List<T> LeerArchivos();
+        public List<T> LeerCRUD();
 
-        public void ModificarArchivos(T usuario);
+        public void ModificarCRUD(T usuario);
        
     }
 }

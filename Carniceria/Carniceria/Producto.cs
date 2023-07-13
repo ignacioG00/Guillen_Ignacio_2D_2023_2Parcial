@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Carniceria
         private decimal precioPorKilo;
         private decimal stock;
         private string corteDeCarne;
+
 
         public Producto(decimal precioPorKilo, decimal stock, string corteDeCarne)
         {
@@ -29,6 +31,37 @@ namespace Carniceria
         public decimal PrecioPorKilo { get => precioPorKilo; set => precioPorKilo = value; }
         public decimal Stock { get { return stock; } set { stock = value; } }
 
+        public delegate void DelegadoStock(object producto, GetInfoCorte infoCarne);
+        public event DelegadoStock StockBajo;
+
+        /// <summary>
+        /// Verifica si algún producto se queda sin stock y le asigna 5 unidades.
+        /// </summary>
+        public void RellenarStock()
+        {
+            foreach (Producto producto in Negocio.Heladera)
+            {
+                if (producto.Stock < 3)
+                {
+                    GetInfoCorte infoCarne = new GetInfoCorte(producto);
+
+                    if (StockBajo is not null)
+                    {
+                        try
+                        {
+                            producto.Stock += 5;
+                            StockBajo.Invoke(this, infoCarne);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("ERROR AL RELLENAR STOCK.", ex);
+                        }
+                    }
+                }
+            }
+        }
+
+       
 
         public static bool CorteNoExistente(List<Producto> listCarnes,string nombreCorte)
         {
@@ -79,4 +112,7 @@ namespace Carniceria
         }
 
     }
+
+
+    
 }

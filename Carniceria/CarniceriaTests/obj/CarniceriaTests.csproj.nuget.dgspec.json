@@ -124,6 +124,10 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.5, )"
+            },
+            "System.Windows.Extensions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [

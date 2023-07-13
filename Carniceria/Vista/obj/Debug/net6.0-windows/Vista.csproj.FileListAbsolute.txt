@@ -51,3 +51,9 @@ C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Vista\bin\Debug\net6.0-wind
 C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Vista\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
 C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Vista\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Vista\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Vista\bin\Debug\net6.0-windows\Microsoft.Win32.SystemEvents.dll
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Vista\bin\Debug\net6.0-windows\System.Drawing.Common.dll
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Vista\bin\Debug\net6.0-windows\System.Windows.Extensions.dll
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Vista\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Vista\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Vista\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Windows.Extensions.dll

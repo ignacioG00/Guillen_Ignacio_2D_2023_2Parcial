@@ -17,7 +17,7 @@ namespace Carniceria.Tests
             List<Cliente> clientes;
             ClienteBD bdClientes = new ClienteBD();
 
-            clientes = bdClientes.LeerArchivos();
+            clientes = bdClientes.LeerCRUD();
 
             Assert.AreNotEqual(clientes.Count, 0);
         }
@@ -29,8 +29,8 @@ namespace Carniceria.Tests
             ClienteBD bdClientes = new ClienteBD();
             VendedorBD bdVendedores = new VendedorBD();
 
-            Negocio.Clientes = bdClientes.LeerArchivos();
-            Negocio.Vendedores = bdVendedores.LeerArchivos();
+            Negocio.Clientes = bdClientes.LeerCRUD();
+            Negocio.Vendedores = bdVendedores.LeerCRUD();
             useraux =Negocio.LoguearUsuario("123!#$!$%", "....,.-.");
             Assert.IsNull(useraux);
         }

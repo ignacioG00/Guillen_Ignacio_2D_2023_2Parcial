@@ -1,0 +1,10 @@
+Número de factura: 0
+Fecha: 06/07/2023
+Vendido por: Lucas
+Cliente: Ramon
+Producto: Bondiola Cantidad: 1 Precio: 1000
+Producto: Vacio Cantidad: 1 Precio: 1200
+Producto: Tira de Asado Cantidad: 1 Precio: 1500
+---------------------------------------------------
+Total: $5300,00
+---------------------------------------------------

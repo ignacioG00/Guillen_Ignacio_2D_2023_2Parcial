@@ -27,7 +27,7 @@ namespace Carniceria
             comando.Connection = conexion;
         }
 
-        public List<Vendedor> LeerArchivos()
+        public List<Vendedor> LeerCRUD()
         {
             List<Vendedor> vendedores = new List<Vendedor>();
 
@@ -65,13 +65,15 @@ namespace Carniceria
             }
             finally
             {
-                conexion.Close();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
             }
-
             return vendedores;
         }
 
-        public void ModificarArchivos(Vendedor usuario)
+        public void ModificarCRUD(Vendedor usuario)
         {
             try
             {
@@ -98,7 +100,10 @@ namespace Carniceria
             }
             finally
             {
-                conexion.Close();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
             }
         }
     }

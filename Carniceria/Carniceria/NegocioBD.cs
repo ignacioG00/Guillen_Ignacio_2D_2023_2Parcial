@@ -27,7 +27,7 @@ namespace Carniceria
             comando.Connection = conexion;
         }
 
-        public List<Producto> LeerArchivos()
+        public List<Producto> LeerCRUD()
         {
             List<Producto> carnes = new List<Producto>();
 
@@ -65,12 +65,15 @@ namespace Carniceria
             }
             finally
             {
-                conexion.Close();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
             }
             return carnes;
         }
 
-        public void Guardar(Producto corte)
+        public void GuardarCRUD(Producto corte)
         {
             try
             {
@@ -100,17 +103,20 @@ namespace Carniceria
             }
             finally
             {
-                conexion.Close();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
             }
         }
-
-        public void ModificarArchivos(Producto corte)
+        // metodo de extension / delegado propio / Evento (Reloj)
+        public void ModificarCRUD(Producto corte) 
         {
             try
             {
                 comando.Parameters.Clear();
                 conexion.Open();
-                comando.CommandText = $"UPDATE PRODUCTO SET  STOCK = @STOCK, PRECIOXKILO = @PRECIOKG WHERE PRODUCTO.CORTEDECARNE = '{corte.CorteDeCarne}'";
+                comando.CommandText = $"UPDATE PRODUCTO SET STOCK = @STOCK, PRECIOXKILO = @PRECIOKG WHERE PRODUCTO.CORTEDECARNE = '{corte.CorteDeCarne}'";
                 comando.Parameters.AddWithValue("@STOCK", corte.Stock);
                 comando.Parameters.AddWithValue("@PRECIOKG", corte.PrecioPorKilo);
                 comando.ExecuteNonQuery();
@@ -132,7 +138,10 @@ namespace Carniceria
             }
             finally
             {
-                conexion.Close();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
             }
         }
 
@@ -157,12 +166,15 @@ namespace Carniceria
 
                 if (innerExceptions.Count > 0)
                 {
-                 //   throw new BaseDeDatosException("Hubo un error al eliminar un producto de la tabla.", innerExceptions);
+                    throw new BDExcepciones("Hubo un error al eliminar un producto de la tabla.", innerExceptions);
                 }
             }
             finally
             {
-                conexion.Close();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
             }
         }
     }

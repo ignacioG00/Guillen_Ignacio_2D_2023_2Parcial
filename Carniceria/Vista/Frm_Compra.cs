@@ -9,7 +9,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using TextBox = System.Windows.Forms.TextBox;
+using Timer = System.Windows.Forms.Timer;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Vista
 {
@@ -19,34 +20,43 @@ namespace Vista
         decimal cuenta = 0;
         decimal total = 0;
         decimal kilosLlevados = 0;
+        Producto producto;
         int contadorFacturas=0;
         public Usuario userAux;
         NegocioBD bdNegocio = new NegocioBD();
         ClienteBD bdClientes = new ClienteBD();
         CancellationTokenSource cancellationTokenHora= new CancellationTokenSource();
-
-
+        
         private SoundPlayer sonidoCompra = new SoundPlayer();
 
-        static List<Producto> listAux = new List<Producto>()
+        static List<Producto> listAux = new List<Producto>();
+        private void CargarLista() 
+        {
+            foreach (Producto item in Negocio.Heladera)
             {
-                new Producto(1000, 0, "Bondiola"),
-                new Producto(1200, 0, "Vacio"),
-                new Producto(1500, 0, "Tira de Asado"),
-                new Producto(2500, 0, "Chorizo"),
-                new Producto(1800, 0, "Costillar")
-        };
+                listAux.Add(new Producto (item.PrecioPorKilo,0,item.CorteDeCarne));
+            }
+        }
+        
 
         public Frm_Compra()
         {
             InitializeComponent();
             ActualizarListas();
             LimpiarVentana();
+            CargarLista();
+            CargarCarnes();
+            producto = new Producto();
+            
             cb_tipoPago.DataSource = Enum.GetValues(typeof(Negocio.TipoPago));
         }
 
+        public void MostrarStockLleno(object producto, GetInfoCorte info)
+        {
+            MessageBox.Show($"Se ha rellenado el stock del producto {info.CorteCarne}.");
+        }
 
-        private List<Producto> RetornarCopiaListAux(List<Producto> productos) 
+            private List<Producto> RetornarCopiaListAux(List<Producto> productos) 
         {
             List<Producto> listCopia = new List<Producto>();
             foreach (var item in productos)
@@ -65,8 +75,11 @@ namespace Vista
             {
                 cb_listaClientes.Items.Add(Negocio.Clientes[i].Mail);
             }
+            lb_cartel.Text = userAux.Nombre.Cartel();
+            producto.StockBajo += MostrarStockLleno;
             CargarCarnes();
             TareaReloj();
+            
         }
 
         private void btn_anotarPedido_Click(object sender, EventArgs e)
@@ -158,12 +171,30 @@ namespace Vista
                 {
                     clienteAux.MontoMax -= totalConRecargo;
                     RealizarPago(clienteAux, totalConRecargo);
-                    
+                    try
+                    {
+                        producto.RellenarStock();
+                        ActualizarListas();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
                 }
                 else
                 {
                     RealizarPago(clienteAux, total);
-                    
+                    try
+                    {
+                        producto.RellenarStock();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
                 }
             }
             else
@@ -258,6 +289,7 @@ namespace Vista
             Negocio.ListFacturaAux.Add(facturaAux);
             MessageBox.Show(factura, "COMPRA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LimpiarVentana();
+
             total = 0;
             cuenta = 0;
         }
@@ -290,8 +322,6 @@ namespace Vista
         /// </summary>
         private void HacerPedido()
         {
-            
-
             if (!string.IsNullOrEmpty(tb_kg.Text))
             {
                 if (decimal.TryParse(tb_kg.Text, out decimal result))
@@ -350,15 +380,31 @@ namespace Vista
         {
             sonidoCompra.SoundLocation = @"C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Vista\Properties\Data\sonidos\correct.wav";
             sonidoCompra.Play();
-            CargarCarnes();
-            dgv_listaCarnes.Rows.Clear();
-            for (int i = 0; i < Negocio.Heladera.Count; i++)
+            try
             {
-                int n = dgv_listaCarnes.Rows.Add();
+                
+                foreach (var carne in Negocio.Heladera)
+                {
+                    bdNegocio.ModificarCRUD(carne);
+                    carne.RellenarStock();
+                    
+                }
+                dgv_listaCarnes.Rows.Clear();
+                for (int i = 0; i < Negocio.Heladera.Count; i++)
+                {
+                    int n = dgv_listaCarnes.Rows.Add();
 
-                dgv_listaCarnes.Rows[n].Cells[0].Value = Negocio.Heladera[i].CorteDeCarne;
-                dgv_listaCarnes.Rows[n].Cells[1].Value = Negocio.Heladera[i].Stock;
-                dgv_listaCarnes.Rows[n].Cells[2].Value = Negocio.Heladera[i].PrecioPorKilo;
+                    dgv_listaCarnes.Rows[n].Cells[0].Value = Negocio.Heladera[i].CorteDeCarne;
+                    dgv_listaCarnes.Rows[n].Cells[1].Value = Negocio.Heladera[i].Stock;
+                    dgv_listaCarnes.Rows[n].Cells[2].Value = Negocio.Heladera[i].PrecioPorKilo;
+                }
+                
+                CargarCarnes();
+                MessageBox.Show("STOCK DE CARNES CARGADOS CORRECTAMENTE!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (BDExcepciones ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         public void CargarCarnes()
@@ -367,11 +413,11 @@ namespace Vista
             /// Carga la lista de cortes de carne del objeto Negocio en un ComboListBox.
             /// </summary>
             /// 
-            Negocio.ListaCarnes = bdNegocio.LeerArchivos();
+            Negocio.Heladera = bdNegocio.LeerCRUD();
             clb_carnes.Items.Clear();
-            for (int i = 0; i < Negocio.ListaCarnes.Count; i++)
+            for (int i = 0; i < Negocio.Heladera.Count; i++)
             {
-                clb_carnes.Items.Add(Negocio.ListaCarnes[i].CorteDeCarne);
+                clb_carnes.Items.Add(Negocio.Heladera[i].CorteDeCarne);
             }
         }
         private void btn_salir_Click(object sender, EventArgs e)
@@ -380,12 +426,12 @@ namespace Vista
             {
                 foreach (var carnes in Negocio.Heladera)
                 {
-                    bdNegocio.ModificarArchivos(carnes);
+                    bdNegocio.ModificarCRUD(carnes);
                     
                 }
                 foreach (var clientes in Negocio.Clientes)
                 {
-                    bdClientes.ModificarArchivos(clientes);
+                    bdClientes.ModificarCRUD(clientes);
                 }
             }
             catch (BDExcepciones ex)
@@ -484,8 +530,6 @@ namespace Vista
             }
         }
 
-
-
         private void btn_deserialJson_Click(object sender, EventArgs e)
         {
             try
@@ -510,5 +554,6 @@ namespace Vista
                 MessageBox.Show(ex.Message);
             }
         }
+
     }
 }

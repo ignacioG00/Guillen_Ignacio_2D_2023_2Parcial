@@ -20,8 +20,8 @@ namespace Vista
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            Negocio.Clientes = bdClientes.LeerArchivos();
-            Negocio.Vendedores = bdVendedores.LeerArchivos();
+            Negocio.Clientes = bdClientes.LeerCRUD();
+            Negocio.Vendedores = bdVendedores.LeerCRUD();
             ValidarIngreso(tb_usuario.Text, tb_contra.Text);
             if (userAux is not null)
             {

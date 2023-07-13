@@ -60,6 +60,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.mensajeLabel = new System.Windows.Forms.Label();
+            this.lb_cartel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_listaCarnes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -341,7 +343,7 @@
             this.lb_reloj.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.lb_reloj.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lb_reloj.ForeColor = System.Drawing.Color.Black;
-            this.lb_reloj.Location = new System.Drawing.Point(744, 9);
+            this.lb_reloj.Location = new System.Drawing.Point(731, 10);
             this.lb_reloj.Name = "lb_reloj";
             this.lb_reloj.Size = new System.Drawing.Size(0, 37);
             this.lb_reloj.TabIndex = 35;
@@ -392,12 +394,37 @@
             this.label6.TabIndex = 39;
             this.label6.Text = "SERIALIZAR PRODUCTOS EN JSON";
             // 
+            // mensajeLabel
+            // 
+            this.mensajeLabel.AutoSize = true;
+            this.mensajeLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.mensajeLabel.ForeColor = System.Drawing.Color.Red;
+            this.mensajeLabel.Location = new System.Drawing.Point(52, 453);
+            this.mensajeLabel.Name = "mensajeLabel";
+            this.mensajeLabel.Size = new System.Drawing.Size(0, 21);
+            this.mensajeLabel.TabIndex = 40;
+            // 
+            // lb_cartel
+            // 
+            this.lb_cartel.AutoSize = true;
+            this.lb_cartel.BackColor = System.Drawing.Color.DarkOrange;
+            this.lb_cartel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lb_cartel.ForeColor = System.Drawing.Color.Black;
+            this.lb_cartel.Location = new System.Drawing.Point(929, 21);
+            this.lb_cartel.Name = "lb_cartel";
+            this.lb_cartel.Size = new System.Drawing.Size(52, 21);
+            this.lb_cartel.TabIndex = 41;
+            this.lb_cartel.Text = "label7";
+            this.lb_cartel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // Frm_Compra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1095, 490);
+            this.ClientSize = new System.Drawing.Size(1095, 607);
             this.ControlBox = false;
+            this.Controls.Add(this.lb_cartel);
+            this.Controls.Add(this.mensajeLabel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btn_deserialJson);
@@ -470,5 +497,8 @@
         private Label label3;
         private Label label6;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Label lb_pocoStock;
+        private Label mensajeLabel;
+        private Label lb_cartel;
     }
 }

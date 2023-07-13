@@ -24,9 +24,9 @@ namespace Vista
         public void CargarCarnes()
         {
             cb_listaCarnes.Items.Clear();
-            for (int i = 0; i < Negocio.ListaCarnes.Count; i++)
+            for (int i = 0; i < Negocio.Heladera.Count; i++)
             {
-                cb_listaCarnes.Items.Add(Negocio.ListaCarnes[i].CorteDeCarne);
+                cb_listaCarnes.Items.Add(Negocio.Heladera[i].CorteDeCarne);
             }
         }
 
@@ -49,7 +49,7 @@ namespace Vista
                 }
                 foreach (var carnes in Negocio.Heladera)
                 {
-                    bdNegocio.ModificarArchivos(carnes);
+                    bdNegocio.ModificarCRUD(carnes);
                 }
                 MessageBox.Show("STOCK DE CARNES CARGADOS CORRECTAMENTE!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -105,6 +105,7 @@ namespace Vista
                     sonidoCarne.SoundLocation = @"C:\Escritorio\UTN\Guillen_Ignacio_2D_2023\Carniceria\Vista\Properties\Data\sonidos\correct.wav";
                     sonidoCarne.Play();
                     Negocio.Heladera.Add(new Producto(result, 0, tb_nombreCorte.Text));
+                    bdNegocio.GuardarCRUD(new Producto(result, 0, tb_nombreCorte.Text));
                     ActualizarListas();
                     CargarCarnes();
                 }

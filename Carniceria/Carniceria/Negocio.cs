@@ -43,7 +43,7 @@ namespace Carniceria
         /// </summary>
         static void HardcodearProductos()
         {
-            ListaCarnes = bdNegocio.LeerArchivos();
+            ListaCarnes = bdNegocio.LeerCRUD();
             Heladera = listaCarnes;
         }
         /// <summary>
@@ -51,21 +51,21 @@ namespace Carniceria
         /// </summary>
         static void InstanciarClientes()
         {
-            Clientes = bdCliente.LeerArchivos();
+            Clientes = bdCliente.LeerCRUD();
         }
         /// <summary>
         /// Inicializa la lista de vendedores.
         /// </summary>
         static void InstanciarVendedores()
         {
-            vendedores = bdVendedores.LeerArchivos();
+            vendedores = bdVendedores.LeerCRUD();
         }
         /// <summary>
         /// Inicializa la lista de facturas.
         /// </summary>
         //static void InstanciarFacturas()
         //{
-        //    listFacturaAux = bdfacturas.LeerArchivos();
+        //    listFacturaAux = bdfacturas.LeerCRUD();
         //}
 
         /// <summary>
@@ -138,12 +138,7 @@ namespace Carniceria
             }
         }
 
-        public static string FormatearFecha(this DateTime fecha)
-        {
-            fecha = DateTime.Now;
-            string fechaStr = fecha.ToString("HH:mm:ss");
-            return fechaStr;
-        }
+        
 
     }
 }

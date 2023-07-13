@@ -27,7 +27,7 @@ namespace Carniceria
             comando.Connection = conexion;
         }
 
-        public List<Cliente> LeerArchivos()
+        public List<Cliente> LeerCRUD()
         {
             List<Cliente> clientes = new List<Cliente>();
 
@@ -69,7 +69,10 @@ namespace Carniceria
             }
             finally
             {
-                conexion.Close();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
             }
 
             return clientes;
@@ -118,7 +121,7 @@ namespace Carniceria
 
         //}
 
-        public void ModificarArchivos(Cliente usuario)
+        public void ModificarCRUD(Cliente usuario)
         {
             try
             {
@@ -145,7 +148,10 @@ namespace Carniceria
             }
             finally
             {
-                conexion.Close();
+                if (conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
             }
         }
     }
