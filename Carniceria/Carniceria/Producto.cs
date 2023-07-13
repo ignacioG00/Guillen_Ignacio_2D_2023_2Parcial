@@ -49,7 +49,8 @@ namespace Carniceria
                     {
                         try
                         {
-                            producto.Stock += 5;
+                            producto.Stock += 3;
+                            Task.Delay(400).Wait();
                             StockBajo.Invoke(this, infoCarne);
                         }
                         catch (Exception ex)
@@ -75,7 +76,10 @@ namespace Carniceria
             }
             return (contador == 0);
         }
-
+        protected virtual void OnStockBajo(GetInfoCorte infoCarne)
+        {
+            StockBajo?.Invoke(this, infoCarne);
+        }
         public static bool operator ==(Producto producto1, Producto producto2)
         {
             if (ReferenceEquals(producto1, producto2))

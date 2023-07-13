@@ -27,7 +27,7 @@ namespace Vista
         ClienteBD bdClientes = new ClienteBD();
         CancellationTokenSource cancellationTokenHora= new CancellationTokenSource();
         private SoundPlayer sonidoCompra = new SoundPlayer();
-
+        public string hora;
 
         static List<Producto> listAux = new List<Producto>();
         private void CargarLista() 
@@ -49,6 +49,11 @@ namespace Vista
             producto = new Producto();
             
             cb_tipoPago.DataSource = Enum.GetValues(typeof(Negocio.TipoPago));
+        }
+        static void Producto_StockBajo(object sender, EventArgs e)
+        {
+            Producto producto = (Producto)sender;
+            MessageBox.Show("¡Stock bajo de " + producto.CorteDeCarne + "! Se agrego reposicion momentanea de 3!!");
         }
 
         public void MostrarStockLleno(object producto, GetInfoCorte info)
@@ -78,6 +83,7 @@ namespace Vista
             }
             lb_cartel.Text = userAux.Nombre.Cartel();
             producto.StockBajo += MostrarStockLleno;
+            producto.StockBajo += Producto_StockBajo;
             CargarCarnes();
             TareaReloj();
             
@@ -154,11 +160,12 @@ namespace Vista
             }
             clienteAux.MontoMax = decimal.Parse(tb_montoMax.Text);
             decimal totalConRecargo = total * (decimal)1.05;
-
+            Task.Run(() =>ImprimirHora(cancellationTokenHora));
             DialogResult resultado = MessageBox.Show("DESEA REALIZAR EL PAGO? \n" + rtb_cuenta.Text +
                 "\nSi eligio credito tendra un 5% de recargo.\n" +
-                "Total c/credito: $" + totalConRecargo + " / " +
-                "Total s/credito: $" + total +
+                "\nTotal c/credito: $" + totalConRecargo + " / " +
+                "\nTotal s/credito: $" + total +
+                $"\n {hora}" +
                 "\n Saldo de " + clienteAux.Nombre +
                 ": $" + clienteAux.MontoMax
                 , "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -286,7 +293,7 @@ namespace Vista
         private void RealizarPago(Cliente cliente, decimal montoACobrar)
         {
             cliente.MontoMax -= total;
-            string factura = "* FACTURA DE LA COMPRA * \n";
+            string factura = $"* FACTURA DE LA COMPRA {hora}* \n";
             for (int i = 0; i < cliente.ProductosComprados.Count; i++)
             {
                 if (cliente.ProductosComprados[i].Stock > 0)
@@ -395,12 +402,7 @@ namespace Vista
                 foreach (var carne in Negocio.Heladera)
                 {
                     bdNegocio.ModificarCRUD(carne);
-                    if (carne.Stock<3)
-                    {
-                        
-                            carne.RellenarStock();
-                        
-                    }
+                    carne.RellenarStock();
                 }
                 dgv_listaCarnes.Rows.Clear();
                 for (int i = 0; i < Negocio.Heladera.Count; i++)
@@ -510,6 +512,15 @@ namespace Vista
             {
                 MessageBox.Show("Error al ejecutar la tarea Reloj.");
             }
+        }
+
+        void ImprimirHora(CancellationTokenSource cancellation) 
+        {
+            do
+            {
+                hora = $"Hora: {DateTime.Now}";
+                Thread.Sleep(1000);
+            } while (!cancellation.IsCancellationRequested);
         }
 
         private void LimpiarVentana()
